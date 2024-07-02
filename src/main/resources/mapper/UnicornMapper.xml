@@ -1,0 +1,32 @@
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UnicornMapper">
+
+    <select id="getUnicorn" resultType="com.crudcrud.jersey.crud.entity.UnicornEntity">
+        select *
+        from unicorns
+        where 1 = 1
+        <if test="id != null">
+            and id = #{id}
+        </if>
+    </select>
+
+    <insert id="insertUnicornEntity" parameterType="com.crudcrud.jersey.crud.entity.UnicornEntity">
+        INSERT INTO unicorns (name,age,colour)
+        VALUES (#{name},#{age},#{colour})
+    </insert>
+
+    <update id="updateUnicornEntity" parameterType="com.crudcrud.jersey.crud.entity.UnicornEntity">
+        UPDATE unicorns
+        SET name = #{name},
+            age = #{age},
+            colour = #{colour}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteUnicornEntity" parameterType="com.crudcrud.jersey.crud.entity.UnicornEntity">
+        DELETE
+        FROM unicorns
+        WHERE id = #{id}
+    </delete>
+
+</mapper>
