@@ -1,0 +1,38 @@
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ActionsMapper">
+
+    <select id="getActionByShortname" resultType="Integer">
+            select id
+            from actions
+            where shortname=#{shortname} and state=1
+    </select>
+
+    <select id="getActions" resultType="com.crudcrud.jersey.crud.entity.ActionsEntity">
+        select *
+        from actions
+        where 1 = 1
+        <if test="id != null">
+            and id = #{id}
+        </if>
+    </select>
+
+    <insert id="insertActions" parameterType="com.crudcrud.jersey.crud.entity.ActionsEntity">
+        INSERT INTO actions (name,shortname,state)
+        VALUES (#{name},#{shortname},#{state})
+    </insert>
+
+    <update id="updateActions" parameterType="com.crudcrud.jersey.crud.entity.ActionsEntity">
+        UPDATE actions
+        SET name = #{name},
+            shortname = #{shortname},
+            state = #{state}
+        WHERE id = #{id}
+    </update>
+
+    <delete id="deleteActions" parameterType="com.crudcrud.jersey.crud.entity.ActionsEntity">
+        DELETE
+        FROM actions
+        WHERE id = #{id}
+    </delete>
+
+</mapper>

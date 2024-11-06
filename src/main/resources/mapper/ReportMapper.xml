@@ -1,0 +1,28 @@
+<!DOCTYPE mapper     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UnicornMapper">
+
+    <select id="getRegions" resultType="com.crudcrud.jersey.crud.entity.RegionsEntity">
+        select *
+        from REGIONS
+        where 1 = 1
+        <if test="id != null">
+            and region_id = #{id}
+        </if>
+        order by region_id
+    </select>
+
+    <select id="getNumberOfAreasInRegion" resultType="Integer">
+        SELECT COUNT(a.REGION_ID)  FROM REGIONS r
+        LEFT JOIN AREAS a
+        ON r.REGION_ID =a.REGION_ID
+        GROUP BY r.REGION_ID ORDER BY r.REGION_ID
+    </select>
+
+    <select id="getRegionsBudget" resultType="Float">
+        SELECT SUM(a.BUDGE)  FROM REGIONS r
+        LEFT JOIN AREAS a
+        ON r.REGION_ID =a.REGION_ID
+        GROUP BY r.REGION_ID,r.NAME ORDER BY r.REGION_ID
+    </select>
+
+</mapper>

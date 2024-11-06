@@ -2,6 +2,7 @@ package com.crudcrud.jersey.crud.controller;
 
 import com.crudcrud.jersey.crud.entity.UserEntity;
 import com.crudcrud.jersey.crud.service.UserService;
+import com.crudcrud.jersey.crud.service.impl.UserServiceImpl;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.inject.Inject;
@@ -14,8 +15,6 @@ public class UserController {
 
     @Inject
     private SqlSessionFactory db;
-
-//    UserServiceImpl userServiceImpl=new UserServiceImpl();
 
     @Inject
     private UserService userService;

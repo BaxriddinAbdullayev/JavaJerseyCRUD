@@ -19,6 +19,8 @@ public interface UserService {
 
     UserEntity getUserByUsername(String username);
 
+    Integer getRoleIdByUsername(String username);
+
     boolean isValidUser(String username, String password);
 
 

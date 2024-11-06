@@ -19,5 +19,9 @@
     <mappers>
         <mapper resource="mapper/UserMapper.xml"/>
         <mapper resource="mapper/UnicornMapper.xml"/>
+        <mapper resource="mapper/RolesMapper.xml"/>
+        <mapper resource="mapper/ActionsMapper.xml"/>
+        <mapper resource="mapper/AccessListMapper.xml"/>
+        <mapper resource="mapper/ReportMapper.xml"/>
     </mappers>
 </configuration>

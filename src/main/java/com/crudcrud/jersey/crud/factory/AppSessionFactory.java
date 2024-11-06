@@ -1,7 +1,9 @@
 package com.crudcrud.jersey.crud.factory;
 
 import com.crudcrud.jersey.crud.domain.model.AppSession;
+import com.crudcrud.jersey.crud.entity.UserEntity;
 import org.glassfish.hk2.api.Factory;
+import org.glassfish.jersey.process.internal.RequestScoped;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -16,11 +18,13 @@ public class AppSessionFactory implements Factory<AppSession> {
     public AppSession provide() {
         HttpSession session = request.getSession(false);
         if (session == null) {
-            return null;
+            return new AppSession();
         }
         AppSession appSession = new AppSession();
-        appSession.setUsername(session.getAttribute("username").toString());
-        appSession.setPassword(session.getAttribute("password").toString());
+        UserEntity user = (UserEntity) session.getAttribute("user");
+
+        appSession.setUsername(user.getUsername());
+        appSession.setPassword(user.getPassword());
         return appSession;
     }
 

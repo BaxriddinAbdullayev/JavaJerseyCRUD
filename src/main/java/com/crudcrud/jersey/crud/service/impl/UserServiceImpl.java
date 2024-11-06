@@ -66,19 +66,23 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    public boolean isValidUser(String username, String password) {
+    @Override
+    public Integer getRoleIdByUsername(String username) {
         try (SqlSession sqlSession = db.openSession(true)) {
-            Map<String, Object> param = new HashMap<>();
-            param.put("username", username);
-            UserEntity userEntity = sqlSession.selectOne("getUserByUsername", param);
-
-            if (userEntity != null &&
-                    userEntity.getUsername().equals(username) &&
-                    userEntity.getPassword().equals(password)) {
-                return true;
-            }
-            return false;
+            Map<String, Object> params = new HashMap<>();
+            params.put("username", username);
+            return sqlSession.selectOne("getRoleIdByUsername", params);
         }
+    }
+
+    public boolean isValidUser(String username, String password) {
+        UserEntity userEntity = getUserByUsername(username);
+        if (userEntity != null &&
+                userEntity.getUsername().equals(username) &&
+                userEntity.getPassword().equals(password)) {
+            return true;
+        }
+        return false;
     }
 
 }

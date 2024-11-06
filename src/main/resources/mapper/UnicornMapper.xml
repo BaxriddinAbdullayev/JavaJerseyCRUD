@@ -8,6 +8,7 @@
         <if test="id != null">
             and id = #{id}
         </if>
+        order by id
     </select>
 
     <insert id="insertUnicornEntity" parameterType="com.crudcrud.jersey.crud.entity.UnicornEntity">
@@ -28,5 +29,10 @@
         FROM unicorns
         WHERE id = #{id}
     </delete>
+
+    <insert id="insertUnicornEntityInUnicornsTestDatabase" parameterType="com.crudcrud.jersey.crud.entity.UnicornEntity">
+        INSERT INTO unicorns_test (id,name,age,colour)
+        VALUES (#{id},#{name},#{age},#{colour})
+    </insert>
 
 </mapper>

@@ -1,8 +1,7 @@
 package com.crudcrud.jersey.crud.service;
 
 import com.crudcrud.jersey.crud.entity.UnicornEntity;
-import com.crudcrud.jersey.crud.entity.UserEntity;
-import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
 
@@ -12,9 +11,15 @@ public interface UnicornService {
 
     List<UnicornEntity> getAllUnicorn();
 
+    List<UnicornEntity> getAllUnicorn(RowBounds rowBounds);
+
     int createUnicorn(UnicornEntity unicornEntity);
 
     int updateUnicorn(UnicornEntity unicorn,Integer id);
 
     int deleteUnicorn(Integer id);
+
+    int printUnicornToExcel();
+
+    int writingUnicornsToDatabase();
 }

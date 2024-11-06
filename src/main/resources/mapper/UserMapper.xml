@@ -11,14 +11,15 @@
     </select>
 
     <insert id="insertUserEntity" parameterType="com.crudcrud.jersey.crud.entity.UserEntity">
-        INSERT INTO cr_user (username,password)
-        VALUES (#{username},#{password})
+        INSERT INTO cr_user (username,password,roles_id)
+        VALUES (#{username},#{password},#{roles_id})
     </insert>
 
     <update id="updateUserEntity" parameterType="com.crudcrud.jersey.crud.entity.UserEntity">
         UPDATE cr_user
         SET username = #{username},
-            password = #{password}
+            password = #{password},
+            roles_id = #{roles_id}
         WHERE user_id = #{user_id}
     </update>
 
@@ -30,6 +31,12 @@
 
     <select id="getUserByUsername" resultType="com.crudcrud.jersey.crud.entity.UserEntity">
         select *
+        from cr_user
+        where username=#{username}
+    </select>
+
+    <select id="getRoleIdByUsername" resultType="Integer">
+        select roles_id
         from cr_user
         where username=#{username}
     </select>
